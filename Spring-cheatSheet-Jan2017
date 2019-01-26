@@ -1,0 +1,220 @@
+To create a Spring project from scratch, you could add the dependent spring framework libraries from : http://repo.spring.io/release/org/springframework/spring/5.1.4.RELEASE/
+
+*What is dependency Injection? The dependency to know what type of object being passed to execute an overridden method can be called so.
+refer: http://myspringtutorial.blogspot.com/2015/10/spring-framework-dependency-injection.html
+-------
+*Setting up(using maven)..
+<dependency> tag in maven with required spring version. 
+Place the spring.xml file in the src folder.
+-------
+*Spring container Bean creation
+1)Declare and assign bean to Spring's ApplicationContext
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+public class ShapeUtil {
+	public static void main(String[] args) {
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+		Triangle triangle = (Triangle) context.getBean("triangle");    //Object injection
+		triangle.draw();
+	}
+}
+
+2)configure in spring.xml
+<beans>
+ <bean id="triangle" class="com.project.springDemo.Triangle"></bean>
+</beans>
+-------
+*Injecting Datatype(bean/object) Variables 
+(refer: http://myspringtutorial.blogspot.com/2015/10/spring-framework-4-bean-variables.html)
+
+2 ways of doing this
+
+1)Using getters n setters in object class n configuring their values in the <bean....><property> tag as below.
+<beans>
+ <bean id="triangle" class="com.project.springDemo.Triangle">
+  <property name="type" value="equilateral"/>
+  <property name="height" value="20"/>
+ </bean>
+</beans>
+
+2)Using Object constructors thsat set the variables n configuring their values in the <bean....><constructor-arg> tag as below.
+Donig so, we could also eliminate the setter methods from the Object class.
+
+public Triangle(String type,int height) ------(a)
+ {
+  this.type = type;
+  this.height=height;
+ }
+ 
+ public Triangle(String type)-----------------(b)
+ {
+  this.type = type;
+ }
+ 
+ (i)--Sets class variable using constructor (a)---
+<beans>
+ <bean id="triangle" class="com.project.springDemo.Triangle">
+  <constructor-arg index="0" value="equilateral"/> 
+   <constructor-arg index="1" value="20"/> 
+ </bean>
+</beans>
+
+(ii)--Sets class variable using constructor (a), same as (i)---
+<beans>
+ <bean id="triangle" class="com.project.springDemo.Triangle">
+  <constructor-arg type="java.lang.String" value="equilateral"/>
+                <constructor-arg type="int" value="20"/> 
+ </bean>
+</beans>
+
+(iii)--Sets class variable using constructor (b)---
+<beans>
+ <bean id="triangle" class="com.project.springDemo.Triangle">
+  <constructor-arg type="java.lang.String" value="equilateral"/>
+ </bean>
+</beans>
+
+-------
+*
+inject these Object type class variables, in spring.xml
+1)we need to define 3 Point beans as individual beans
+2)refer the defined point beans as Variables of "triangle" bean using the "ref" attribute of <property> tag
+-------
+*
+innerbeans : 
+we could define a bean object passed as parameter as an innerbean as below.
+In this case, the passed bean tag does not require a "id tag.. 
+or the <property tag doesnt require the ref tag, 
+as its all declared within it. as below:
+<beans>
+ <bean id="triangle" class="com.findgoose.springDemo.Triangle">
+ 
+  <property name="pointA">
+   <bean class="com.project.springDemo.Point">
+    <property name="x" value="10"/>
+    <property name="y" value="100"/>
+   </bean>
+  </property>
+  <property name="pointB" ref="Bean-pointB"/>
+  <property name="pointC" ref="Bean-pointC"/>
+ </bean>
+ 
+ <bean id="Bean-pointB" class="com.project.springDemo.Point">
+  <property name="x" value="20"/>
+  <property name="y" value="200"/>
+ </bean>
+ <bean id="Bean-pointC" class="com.project.springDemo.Point">
+  <property name="x" value="30"/>
+  <property name="y" value="300"/>
+ </bean>
+</beans>
+-------
+*
+Alias and idref tags
+
+1)Alias
+The <alias> tag is used to add an additional name to an existing bean. 
+Or we could simply add a "name" within the bean tag to give it the same <alias> functionality
+
+public class DrawingApp {
+
+  public static void main(String[] args) { 
+  ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+  Triangle triangle = (Triangle) context.getBean("threeSided");
+  triangle.Draw();
+ }
+}
+
+
+<bean id="triangle" class="com.project.springDemo.Triangle">
+  ......
+ </bean>
+ <alias name="triangle" alias="threeSided"/>
+
+</beans>
+
+(or)
+
+<bean id="triangle" class="com.project.springDemo.Triangle" name="threeSided">
+
+
+2)idref
+The idref attribute is used to handle exception,
+when a referred bean isn't present in the respective xml
+
+<beans>
+ <bean id="triangle" class="com.project.springDemo.Triangle">
+    <property name="pointB">
+          
+          <idref="Bean-pointB"/>
+          
+	</property>
+ </bean>
+ 
+ <bean id="Bean-pointB" class="com.project.springDemo.Point">
+  <property name="x" value="20"/>
+  <property name="y" value="200"/>
+ </bean>
+ 
+ -------
+*
+Collections in spring:
+1)List .. <list>
+2)Set .. <set>
+3)Map .. <map>
+
+public class TriangleCollection {
+//DEFINE
+ private List<Point> pointsList;
+ public List<Point> getPointsList() {return pointsList;}
+ 
+ (OR)
+ 
+  private Set<Point> pointsList;
+  public Set<Point> getPointsList() {return pointsList;}
+ 
+ (OR)
+ 
+  private Map<Point> pointsList;
+ public Map<Point> getPointsList() {return pointsList;}
+
+ public void Draw()
+ {....}
+}
+
+where in spring.xml:
+
+<beans>
+<bean id="triangleCollection" class="com.product.springDemo.TriangleCollection">
+ <property name="pointsList">
+  
+  <list>
+   <ref bean ="Bean-pointB"/>
+   <ref bean ="Bean-pointC"/>
+  </list>
+  
+  (or)
+  
+  <set>
+   <ref bean ="Bean-pointB"/>
+   <ref bean ="Bean-pointC"/>
+  </set>
+  
+  (or)
+  
+  <map>
+   <ref bean ="Bean-pointB"/>
+   <ref bean ="Bean-pointC"/>
+  </map>
+  
+ </property>
+ </bean>
+ <bean id="Bean-pointB" class="com.product.springDemo.Point">
+  <property name="x" value="20"/>
+  <property name="y" value="200"/>
+ </bean>
+ <bean id="Bean-pointC" class="com.product.springDemo.Point">
+  <property name="x" value="30"/>
+  <property name="y" value="300"/>
+ </bean>
+</beans>
