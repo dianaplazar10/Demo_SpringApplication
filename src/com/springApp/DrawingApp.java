@@ -9,10 +9,6 @@ import com.springApp.dao.Triangle_AutowiringDemo;
 public class DrawingApp {
 
 	public static void main(String[] args) {
-		//BeanFactory factory = new XmlBeanFactory(resource)
-//		 ApplicationContext context= new ClassPathXmlApplicationContext("beanfactory.xml");
-//		 Triangle tringlebean= (Triangle) context.getBean("triangle");
-//	     tringlebean.draw();
 		ApplicationContext context= new ClassPathXmlApplicationContext("beanfactory_autowiring.xml");    
 		Triangle_AutowiringDemo tringlebean= (Triangle_AutowiringDemo) context.getBean("triangle_autowiringDemo");
 	    tringlebean.draw_autowiringDemo();
@@ -22,23 +18,16 @@ public class DrawingApp {
 }
 
 /*
- * output-for beanfactory.xml:
+ * output:
  * ------
- * Dependency Injection via Inheritance config.
-PointA: (0,0)
------------------------------------------------
-Dependency Injection via 'ref' attribute
-PointB: (1,1)
------------------------------------------------
-Dependency Injection via inner bean implementation
-PointC: (2,2)
------------------------------------------------
-Dependency Injection of Collection(List of Points) : adding 2 points to list
-point.getX(): point.getY():::(10,10)
-point.getX(): point.getY():::(0,0)
-point.getX(): point.getY():::(30,30)
------------------------------------------------
-Draw from Triangle class
-Triangle with type:(initialized from spring container) equilateral
+ * 
+ApplicationContext implementation is used to access or initiate other beans in the spring container
+--------Example below to access Application name using App context---------------------------------------
+appContext.getBean('..') : com.springApp.dao.Triangle_AutowiringDemo@3b084709
+appContext.getBean('..') : com.springApp.dao.Point@3224f60b
+
+BeanNameAware implementation is used to retrieve names of beans in the spring container
+--------Example below to access the current Bean's name---------------------------------------
+CurrentBeanName : triangle_autowiringDemo
  * 
  */
