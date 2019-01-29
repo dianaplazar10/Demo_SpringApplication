@@ -55,10 +55,14 @@
  </bean>
  
  <bean id="pointA" class="com.springApp.dao.Point">
- 	<property name="x" value="1"/>
- 	<property name="y" value="1"/>
+ 	<property name="x" value="${pointA.pointX}"/>
+ 	<property name="y" value="${pointA.pointY}"/>
  </bean>
  
  <bean class="com.springApp.Processors.CustomBeanPostProcessor"/>
  <bean class="com.springApp.Processors.CustomBeanFactoryPostProcessor"/>
+ 
+ <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+ 	<property name="locations" value="propertiesPlaceHolder.properties"></property>
+ </bean>
 </beans>

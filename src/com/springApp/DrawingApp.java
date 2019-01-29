@@ -24,7 +24,7 @@ public class DrawingApp {
 		**/
 		
 		Triangle_demoCallBacks trianglebean= (Triangle_demoCallBacks) context.getBean("triangle_demoCallBacks");
-	    //trianglebean.draw();
+	    trianglebean.draw();
 	}
 
 }
