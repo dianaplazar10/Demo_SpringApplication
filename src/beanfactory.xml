@@ -58,4 +58,6 @@
  	<property name="x" value="1"/>
  	<property name="y" value="1"/>
  </bean>
+ 
+ <bean class="com.springApp.Processors.CustomBeanPostProcessor"/>
 </beans>

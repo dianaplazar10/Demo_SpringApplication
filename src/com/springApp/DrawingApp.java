@@ -25,7 +25,7 @@ public class DrawingApp {
 		**/
 		
 		Triangle_demoCallBacks tringlebean= (Triangle_demoCallBacks) context.getBean("triangle_demoCallBacks");
-	    tringlebean.draw();
+	    //tringlebean.draw();
 	}
 
 }
@@ -55,5 +55,27 @@ Jan 29, 2019 11:58:01 AM org.springframework.context.support.ClassPathXmlApplica
 INFO: Closing org.springframework.context.support.ClassPathXmlApplicationContext@1a6c5a9e: startup date [Tue Jan 29 11:58:01 PST 2019]; root of context hierarchy
 printing from : destroy() from Triangle_demoCallBacks.java
 --------Output End--------------------
+
+
+output for BeanPostProcessor implementation
+------------------------------------------
+INFO: Loading XML bean definitions from class path resource [beanfactory.xml]
+postProcessBeforeInitialization ::::BeanName : zeropoint
+postProcessAfterInitialization ::::BeanName : zeropoint
+postProcessBeforeInitialization ::::BeanName : point10
+postProcessAfterInitialization ::::BeanName : point10
+postProcessBeforeInitialization ::::BeanName : point30
+postProcessAfterInitialization ::::BeanName : point30
+postProcessBeforeInitialization ::::BeanName : pointB
+postProcessAfterInitialization ::::BeanName : pointB
+postProcessBeforeInitialization ::::BeanName : com.springApp.dao.Point#59a6e353
+postProcessAfterInitialization ::::BeanName : com.springApp.dao.Point#59a6e353
+postProcessBeforeInitialization ::::BeanName : triangle
+postProcessAfterInitialization ::::BeanName : triangle
+postProcessBeforeInitialization ::::BeanName : pointA
+postProcessAfterInitialization ::::BeanName : pointA
+postProcessBeforeInitialization ::::BeanName : triangle_demoCallBacks
+printing from : afterPropertiesSet() from Triangle_demoCallBacks.java
+postProcessAfterInitialization ::::BeanName : triangle_demoCallBacks
  * 
  */
