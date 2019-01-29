@@ -1,6 +1,5 @@
 package com.springApp;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -24,8 +23,8 @@ public class DrawingApp {
 		*if the bean has implemented DisposableBean, then, the Destroy method of that bean will be called with this api call on the context
 		**/
 		
-		Triangle_demoCallBacks tringlebean= (Triangle_demoCallBacks) context.getBean("triangle_demoCallBacks");
-	    //tringlebean.draw();
+		Triangle_demoCallBacks trianglebean= (Triangle_demoCallBacks) context.getBean("triangle_demoCallBacks");
+	    //trianglebean.draw();
 	}
 
 }
