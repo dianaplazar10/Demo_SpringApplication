@@ -7,8 +7,47 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket.xsd">  -->
 
- <bean id="triangle" class="com.springApp.dao.Triangle">
- 	<property name="type" value="equilateral"/>
+<bean id="triangle-parent" class="com.springApp.dao.Triangle" abstract="true">
+ 	<property name="pointA" ref="zeropoint"/>
+ 	<property name="pointsList">	
+ 		<list>
+ 			<ref bean="point10"/>
+ 		</list>
+ 	</property>
  </bean>
 
+ <bean id="triangle" class="com.springApp.dao.Triangle" parent="triangle-parent" >
+ 	<property name="type" value="equilateral"/>
+ 	<property name="pointB" ref="pointB"/>
+ 	<property name="pointC">
+ 		  <bean class="com.springApp.dao.Point">
+		 	<property name="x" value="2"/>
+		 	<property name="y" value="2"/>
+		 </bean>
+ 	</property>
+ 	<property name="pointsList">
+ 		<list merge="true">
+ 			<ref bean="zeropoint"/>
+			<bean id="point30" class="com.springApp.dao.Point">
+				<property name="x" value="30"/>
+				<property name="y" value="30"/>
+			</bean>
+ 		</list>
+ 	</property>
+ </bean>
+ 
+  <bean id="zeropoint" class="com.springApp.dao.Point">
+ 	<property name="x" value="0"/>
+ 	<property name="y" value="0"/>
+  </bean>
+ 
+ <bean id="pointB" class="com.springApp.dao.Point">
+ 	<property name="x" value="1"/>
+ 	<property name="y" value="1"/>
+ </bean>
+
+ <bean id="point10" class="com.springApp.dao.Point">
+ 	<property name="x" value="10"/>
+ 	<property name="y" value="10"/>
+ </bean>
 </beans>

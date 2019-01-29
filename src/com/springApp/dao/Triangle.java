@@ -1,15 +1,25 @@
 package com.springApp.dao;
 
-public class Triangle implements Shape{
+import java.util.List;
+
+public class Triangle{
 	private String type;
 	private int length;
 	
 	private Point pointA;
-	 private Point pointB;
-	 private Point pointC;
-	 
-		public Point getPointA() {
-			return pointA;
+	private Point pointB;
+	private Point pointC;
+	
+	private List<Point> pointsList;
+	
+	public List<Point> getPointsList() {
+		return pointsList;
+	}
+	public void setPointsList(List<Point> pointsList) {
+		this.pointsList = pointsList;
+	}
+	public Point getPointA() {
+		return pointA;
 	}
 	public void setPointA(Point pointA) {
 		this.pointA = pointA;
@@ -36,13 +46,27 @@ public class Triangle implements Shape{
 	public void setLength(int length) {
 		this.length = length;
 	}
-	@Override
+
 	public void draw() {
-//		System.out.println("PointA: (" + getPointA().getX() + "," + getPointA().getY()+")");
-//		  System.out.println("PointB: (" + getPointB().getX() + "," + getPointB().getY()+")");
-//		  System.out.println("PointC: (" + getPointC().getX() + "," + getPointC().getY()+")");
+		System.out.println("Dependency Injection via Inheritance config.");
+		System.out.println("PointA: (" + getPointA().getX() + "," + getPointA().getY()+")");
+		System.out.println("-----------------------------------------------");
+		
+		System.out.println("Dependency Injection via 'ref' attribute");
+		System.out.println("PointB: (" + getPointB().getX() + "," + getPointB().getY()+")");
+		System.out.println("-----------------------------------------------");
+		
+		System.out.println("Dependency Injection via inner bean implementation");
+		System.out.println("PointC: (" + getPointC().getX() + "," + getPointC().getY()+")");
+		System.out.println("-----------------------------------------------");
+		
+		System.out.println("Dependency Injection of Collection(List of Points) : adding 2 points to list");		
+		getPointsList().forEach(p -> System.out.println("point.getX(): point.getY():::(" + p.getX() + "," + p.getY()+")"));
+		System.out.println("-----------------------------------------------");
+		
+		
 		System.out.println("Draw from Triangle class");
-		System.out.println("Tringle with type: " + getType());// + ";length : " +getLength());
+		System.out.println("Triangle with type:(initialized from spring container) " + getType());// + ";length : " +getLength());
 		
 	}
 	public String getType() {
@@ -51,7 +75,6 @@ public class Triangle implements Shape{
 	public void setType(String type) {
 		this.type = type;
 	}
-	
 
 	//mandatory to create default constructor, else results in org.springframework.beans.factory.BeanCreationException
 	public Triangle() {

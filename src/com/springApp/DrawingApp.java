@@ -16,3 +16,25 @@ public class DrawingApp {
 	}
 
 }
+
+/*
+ * output:
+ * ------
+ * Dependency Injection via Inheritance config.
+PointA: (0,0)
+-----------------------------------------------
+Dependency Injection via 'ref' attribute
+PointB: (1,1)
+-----------------------------------------------
+Dependency Injection via inner bean implementation
+PointC: (2,2)
+-----------------------------------------------
+Dependency Injection of Collection(List of Points) : adding 2 points to list
+point.getX(): point.getY():::(10,10)
+point.getX(): point.getY():::(0,0)
+point.getX(): point.getY():::(30,30)
+-----------------------------------------------
+Draw from Triangle class
+Triangle with type:(initialized from spring container) equilateral
+ * 
+ */
