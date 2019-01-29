@@ -1,4 +1,4 @@
-package com.springtest.dao;
+package com.springApp.dao;
 
 public class Triangle implements Shape{
 	private String type;
@@ -8,8 +8,8 @@ public class Triangle implements Shape{
 	 private Point pointB;
 	 private Point pointC;
 	 
-	public Point getPointA() {
-		return pointA;
+		public Point getPointA() {
+			return pointA;
 	}
 	public void setPointA(Point pointA) {
 		this.pointA = pointA;
@@ -38,10 +38,11 @@ public class Triangle implements Shape{
 	}
 	@Override
 	public void draw() {
-		System.out.println("SHAPE = triangle with type: " + getType() + ";length : " +getLength());
-		 System.out.println("PointA: (" + getPointA().getX() + "," + getPointA().getY()+")");
-		  System.out.println("PointB: (" + getPointB().getX() + "," + getPointB().getY()+")");
-		  System.out.println("PointC: (" + getPointC().getX() + "," + getPointC().getY()+")");
+//		System.out.println("PointA: (" + getPointA().getX() + "," + getPointA().getY()+")");
+//		  System.out.println("PointB: (" + getPointB().getX() + "," + getPointB().getY()+")");
+//		  System.out.println("PointC: (" + getPointC().getX() + "," + getPointC().getY()+")");
+		System.out.println("Draw from Triangle class");
+		System.out.println("Tringle with type: " + getType());// + ";length : " +getLength());
 		
 	}
 	public String getType() {

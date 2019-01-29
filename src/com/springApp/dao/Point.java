@@ -1,4 +1,4 @@
-package com.springtest.dao;
+package com.springApp.dao;
 public class Point {
  private int x;
  private int y;

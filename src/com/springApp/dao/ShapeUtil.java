@@ -1,6 +1,5 @@
-package com.springtest.dao;
+package com.springApp.dao;
 
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,9 +10,9 @@ public class ShapeUtil {
 //		Shape shape1= new Triangle("isosceles",3);
 		//ApplicationContext 
 		AbstractApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-		context.registerShutdownHook();
+		//context.registerShutdownHook();
 		Triangle triangle = (Triangle) context.getBean("triangle");    //Object injection
-		triangle.draw();
+		//triangle.draw();
 //		shape1 = new Circle(2);
 //		shape1.draw();
 		

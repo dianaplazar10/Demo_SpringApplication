@@ -1,4 +1,4 @@
-package com.springtest.dao;
+package com.springApp.dao;
 
 public class Circle implements Shape{
 
