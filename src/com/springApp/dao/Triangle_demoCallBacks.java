@@ -27,12 +27,12 @@ public class Triangle_demoCallBacks implements InitializingBean,DisposableBean{
 	//Method below is implementation for InitializingBean interface
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		System.out.println("printing from : afterPropertiesSet() from Triangle_demoCallBacks.java");		
+		//System.out.println("printing from : afterPropertiesSet() from Triangle_demoCallBacks.java");		
 	}
 	
 	//Method below is implementation for DisposableBean interface
 	@Override
 	public void destroy() throws Exception {
-		System.out.println("printing from : destroy() from Triangle_demoCallBacks.java");
+		//System.out.println("printing from : destroy() from Triangle_demoCallBacks.java");
 	}
 }

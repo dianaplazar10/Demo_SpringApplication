@@ -60,4 +60,5 @@
  </bean>
  
  <bean class="com.springApp.Processors.CustomBeanPostProcessor"/>
+ <bean class="com.springApp.Processors.CustomBeanFactoryPostProcessor"/>
 </beans>
