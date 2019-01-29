@@ -4,21 +4,25 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.springApp.dao.Triangle;
+import com.springApp.dao.Triangle_AutowiringDemo;
 
 public class DrawingApp {
 
 	public static void main(String[] args) {
 		//BeanFactory factory = new XmlBeanFactory(resource)
-		 ApplicationContext context= new ClassPathXmlApplicationContext("beanfactory.xml");
-	        Triangle tringlebean= (Triangle) context.getBean("triangle");
-	        tringlebean.draw();
+//		 ApplicationContext context= new ClassPathXmlApplicationContext("beanfactory.xml");
+//		 Triangle tringlebean= (Triangle) context.getBean("triangle");
+//	     tringlebean.draw();
+		ApplicationContext context= new ClassPathXmlApplicationContext("beanfactory_autowiring.xml");    
+		Triangle_AutowiringDemo tringlebean= (Triangle_AutowiringDemo) context.getBean("triangle_autowiringDemo");
+	    tringlebean.draw_autowiringDemo();
 
 	}
 
 }
 
 /*
- * output:
+ * output-for beanfactory.xml:
  * ------
  * Dependency Injection via Inheritance config.
 PointA: (0,0)
