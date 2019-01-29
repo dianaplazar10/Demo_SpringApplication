@@ -50,4 +50,12 @@
  	<property name="x" value="10"/>
  	<property name="y" value="10"/>
  </bean>
+ 
+ <bean id="triangle_demoCallBacks" class="com.springApp.dao.Triangle_demoCallBacks" autowire="byName">
+ </bean>
+ 
+ <bean id="pointA" class="com.springApp.dao.Point">
+ 	<property name="x" value="1"/>
+ 	<property name="y" value="1"/>
+ </bean>
 </beans>
