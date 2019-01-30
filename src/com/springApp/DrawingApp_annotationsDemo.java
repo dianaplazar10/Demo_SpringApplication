@@ -22,11 +22,16 @@ public class DrawingApp_annotationsDemo {
  * output:
  * ------
  * 
+INFO: Loading XML bean definitions from class path resource [beanfactory_annotations.xml]
+print from beforeInitialise() of Circle
 Centre: (1,1)
 -----------------------------------------------
 
 DefaultCentre: (10,10)
 -----------------------------------------------
+Jan 29, 2019 5:18:56 PM org.springframework.context.support.ClassPathXmlApplicationContext doClose
+INFO: Closing org.springframework.context.support.ClassPathXmlApplicationContext@1a6c5a9e: startup date [Tue Jan 29 17:18:56 PST 2019]; root of context hierarchy
+print from beforeDestroy() of Circle
  * 
  * 
  */
