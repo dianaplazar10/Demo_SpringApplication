@@ -21,6 +21,6 @@
  <bean id="circle" class="com.springApp.dao.Circle">
  </bean>
  
- <context:annotation-config/>
+ <context:annotation-config/> <!--  including this line will include all annotation definition injection to the spring container -->
  
 </beans>
